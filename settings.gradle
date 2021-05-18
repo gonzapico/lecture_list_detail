@@ -1,0 +1,2 @@
+rootProject.name = "Imagina Formacion - Test"
+include ':app'
