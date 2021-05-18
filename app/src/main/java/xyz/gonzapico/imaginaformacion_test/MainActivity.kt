@@ -1,5 +1,6 @@
 package xyz.gonzapico.imaginaformacion_test
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -22,13 +23,18 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         // Contenido
-        val listOfPeople = ElementsAdapter(arrayOf("Ana", "Paco", "Luis"))
+        val dataSet = arrayOf("Ana", "Paco", "Luis")
+        val adapter = ElementsAdapter(dataSet
+        ) {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_ID, it)
+            startActivity(intent)
+        }
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
         // Adapter
-        rvListOfElements.adapter = listOfPeople
-        rvListOfElements.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rvListOfElements.adapter = adapter
+
 
 
 
