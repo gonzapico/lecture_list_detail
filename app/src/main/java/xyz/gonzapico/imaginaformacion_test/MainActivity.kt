@@ -24,24 +24,24 @@ class MainActivity : AppCompatActivity() {
 
         // Contenido
         val dataSet = arrayOf("Ana", "Paco", "Luis")
-        val adapter = ElementsAdapter(dataSet
-        ) {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_ID, it)
-            startActivity(intent)
+        val adapter = ElementsAdapter(dataSet) {
+            goToDetailActivity(it)
         }
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
         // Adapter
         rvListOfElements.adapter = adapter
 
-
-
-
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+    }
+
+    private fun goToDetailActivity(nameOfPerson: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.EXTRA_ID, nameOfPerson)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
