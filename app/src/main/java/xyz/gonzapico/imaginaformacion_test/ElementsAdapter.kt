@@ -23,12 +23,9 @@ class ElementsAdapter(
         fun bind(itemId: String) {
             with (binding) {
                 textView.text = itemId
-                textView.setOnClickListener{
-                    onClick
-                }
                 // Aquí definiremos el comportamiento del click sobre cada elemento
                 root.setOnClickListener {
-                    onClick
+                    onClick(itemId)
                 }
             }
         }
