@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.DatePicker
+import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,10 +33,23 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
+        playVideo()
 
         binding.fab.setOnClickListener {
             showDatePickerDialog()
         }
+    }
+
+    private fun playVideo() {
+        // VideoView
+        val vvMain = binding.vvMain
+
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(vvMain)
+        vvMain.setVideoPath("https://samplelib.com/lib/preview/mp4/sample-5s.mp4")
+        vvMain.setMediaController(mediaController)
+        vvMain.requestFocus()
+        vvMain.start()
     }
 
     private fun showDatePickerDialog() {
