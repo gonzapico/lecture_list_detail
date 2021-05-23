@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import java.util.*
+import java.util.Calendar.YEAR
 
 class DatePickerFragment :
     DialogFragment(){
@@ -17,13 +18,20 @@ class DatePickerFragment :
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        return DatePickerDialog(activity as Context,
+
+
+        val picker = DatePickerDialog(activity as Context,
+            R.style.DatePickerTheme,
             { view, year, month, dayOfMonth ->
                 Log.d("DatePickerFragment",
                     "Día seleccionado: $dayOfMonth/$month/$year") },
-            year,
-            month,
-            day
-        )
+            year, month, day)
+        // Sólo podemos cambiar el año hasta 18 años antes
+        c.add(YEAR, -18)
+        picker.datePicker.minDate = c.timeInMillis
+        // El máximo día para elegir es el día de hoy del año actual
+        c.add(YEAR, 18)
+        picker.datePicker.maxDate = c.timeInMillis
+        return picker
     }
 }
