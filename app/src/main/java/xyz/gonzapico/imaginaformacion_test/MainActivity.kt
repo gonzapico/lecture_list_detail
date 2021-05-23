@@ -3,6 +3,7 @@ package xyz.gonzapico.imaginaformacion_test
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,10 +33,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.fab.setOnClickListener {
+            showDatePickerDialog()
         }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment()
+        datePicker.show(supportFragmentManager, "datePicker")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
