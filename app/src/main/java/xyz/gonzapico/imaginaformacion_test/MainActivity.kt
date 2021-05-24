@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import xyz.gonzapico.imaginaformacion_test.databinding.ActivityMainBinding
 
@@ -31,8 +30,8 @@ class MainActivity : AppCompatActivity(), UserView {
     }
 
     private fun setUpViewModel() {
-        userListViewModel.userModel.observe(this, { userList ->
-            loadUsers(userList.users)
+        userListViewModel.usersModel.observe(this, { userList ->
+            loadUsers(userList)
         })
     }
 

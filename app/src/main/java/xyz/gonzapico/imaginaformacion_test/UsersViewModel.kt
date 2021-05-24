@@ -2,20 +2,16 @@ package xyz.gonzapico.imaginaformacion_test
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class UsersViewModel : ViewModel() {
 
-    val userModel = MutableLiveData<UserListModel>()
+    val usersModel = MutableLiveData<List<UserModel>>()
 
     fun getUsers() {
-        val usersList = createGroupOfUsers()
-        val userListModel = UserListModel(usersList)
-        userModel.postValue(userListModel)
+        viewModelScope.launch {
+            usersModel.value = DataNetwork.retrofit.getUsers()
+        }
     }
-
-    private fun createGroupOfUsers() = listOf(
-        UserModel("Ana", "Fernández", 1996),
-        UserModel("Paco", "López", 2000),
-        UserModel("Luis", "Antunez", 1980)
-    )
 }
