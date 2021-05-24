@@ -4,21 +4,29 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
+import org.koin.core.scope.Scope
 import xyz.gonzapico.imaginaformacion_test.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), UserView {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var userPresenter: UserPresenter
+
+    private val userPresenter: UserPresenter by inject {
+        parametersOf(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+    }
 
-        userPresenter = UserPresenter(this)
-
+    override fun onResume() {
+        super.onResume()
+        userPresenter.getUsers()
     }
 
     override fun showLoading() {
