@@ -1,18 +1,16 @@
 package xyz.gonzapico.imaginaformacion_test
 
-import java.util.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class UserPresenter(val userView: UserView) {
+class UsersViewModel : ViewModel() {
 
-    init {
-        userView.showLoading()
-        getUsers()
-    }
+    val userModel = MutableLiveData<UserListModel>()
 
-    fun getUsers(){
+    fun getUsers() {
         val usersList = createGroupOfUsers()
-        userView.loadUsers(usersList)
-        userView.hideLoading()
+        val userListModel = UserListModel(usersList)
+        userModel.postValue(userListModel)
     }
 
     private fun createGroupOfUsers() = listOf(
