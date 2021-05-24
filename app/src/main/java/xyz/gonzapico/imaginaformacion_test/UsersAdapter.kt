@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ElementsAdapter(private val dataSet: Array<String>) :
-    RecyclerView.Adapter<ElementsAdapter.ViewHolder>() {
+class UsersAdapter(private val listOfUsers: List<UserModel>) :
+    RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.textView)
@@ -32,10 +32,10 @@ class ElementsAdapter(private val dataSet: Array<String>) :
 
         // Obtenemos el elemento de UI y reemplzamos el
         // contenido de la vista con esos valores
-        viewHolder.textView.text = dataSet[position]
+        viewHolder.textView.text = listOfUsers[position].toString()
     }
 
     // Tamaño de la lista de elementos (invocado por el LayoutManager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = listOfUsers.size
 
 }
