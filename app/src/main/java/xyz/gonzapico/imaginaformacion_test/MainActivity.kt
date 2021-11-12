@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val listOfPeople = ElementsAdapter(arrayOf(
                 Person("Anna","García", Gender.FEMALE),
                 Person("Luís","Martínez", Gender.MALE),
-                Person("Paco","Pérez", Gender.FEMALE)))
+                Person("Paco","Pérez", Gender.MALE)))
 
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
