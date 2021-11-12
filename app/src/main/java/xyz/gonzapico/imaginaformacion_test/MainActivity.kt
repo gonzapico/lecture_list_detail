@@ -13,6 +13,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    class Person(
+        val name : String,
+        val surname : String,
+        val gender : Gender
+    )
+    enum class Gender {MALE, FEMALE}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +28,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         // Contenido
-        val listOfPeople = ElementsAdapter(arrayOf("Ana", "Paco", "Luis"))
+        val listOfPeople = ElementsAdapter(arrayOf(
+                Person("Anna","García", Gender.FEMALE),
+                Person("Luís","Martínez", Gender.MALE),
+                Person("Paco","Pérez", Gender.FEMALE)))
+
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
         // Adapter
