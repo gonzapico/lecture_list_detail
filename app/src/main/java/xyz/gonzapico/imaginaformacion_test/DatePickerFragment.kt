@@ -26,11 +26,9 @@ class DatePickerFragment :
                 Log.d("DatePickerFragment",
                     "Día seleccionado: $dayOfMonth/$month/$year") },
             year, month, day)
-        // Sólo podemos cambiar el año hasta 18 años antes
+
+        // Seleccionar fecha de nacimiento si eres mayor de edad.
         c.add(YEAR, -18)
-        picker.datePicker.minDate = c.timeInMillis
-        // El máximo día para elegir es el día de hoy del año actual
-        c.add(YEAR, 18)
         picker.datePicker.maxDate = c.timeInMillis
         return picker
     }
