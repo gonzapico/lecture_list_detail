@@ -27,10 +27,10 @@ class DatePickerFragment :
                     "Día seleccionado: $dayOfMonth/$month/$year") },
             year, month, day)
         // Sólo podemos cambiar el año hasta 18 años antes
-        c.add(YEAR, -18)
+        c.add(YEAR, -118)
         picker.datePicker.minDate = c.timeInMillis
         // El máximo día para elegir es el día de hoy del año actual
-        c.add(YEAR, 18)
+        c.add(YEAR, 100)
         picker.datePicker.maxDate = c.timeInMillis
         return picker
     }
