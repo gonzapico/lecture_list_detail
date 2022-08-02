@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    data class User (val nombre: String, val apellidos: String, val sexo: String)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -21,8 +23,14 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val users = ArrayList<User>()
+
+        users.add(User("Daniel", "Apellido1 Apellido2", "Varón"))
+        users.add(User("Miguel", "Apellido1 Apellido2", "Varón"))
+        users.add(User("Amparo", "Apellido1 Apellido2", "Mujer"))
+
         // Contenido
-        val listOfPeople = ElementsAdapter(arrayOf("Ana", "Paco", "Luis"))
+        val listOfPeople = ElementsAdapter(users)
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
         // Adapter

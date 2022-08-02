@@ -1,17 +1,22 @@
 package xyz.gonzapico.imaginaformacion_test
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ElementsAdapter(private val dataSet: Array<String>) :
+class ElementsAdapter(private val dataSet: ArrayList<MainActivity.User>) :
     RecyclerView.Adapter<ElementsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView)
+        val contenedorDatos: FrameLayout = view.findViewById(R.id.contenedorDatos)
+        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvApellidos: TextView = view.findViewById(R.id.tvApellidos)
+        val tvSexo: TextView = view.findViewById(R.id.tvSexo)
 
         init {
             // Aquí definiremos el comportamiento del click sobre cada elemento
@@ -32,7 +37,13 @@ class ElementsAdapter(private val dataSet: Array<String>) :
 
         // Obtenemos el elemento de UI y reemplzamos el
         // contenido de la vista con esos valores
-        viewHolder.textView.text = dataSet[position]
+        viewHolder.tvNombre.text = dataSet[position].nombre
+        viewHolder.tvApellidos.text = dataSet[position].apellidos
+        viewHolder.tvSexo.text = dataSet[position].sexo
+
+        if(dataSet[position].sexo.equals("Varón")) {
+            viewHolder.contenedorDatos.setBackgroundColor(Color.GREEN)
+        }
     }
 
     // Tamaño de la lista de elementos (invocado por el LayoutManager)
