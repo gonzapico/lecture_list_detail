@@ -23,7 +23,7 @@ import xyz.gonzapico.imaginaformacion_test.placeholder.PlaceholderContent
 class ItemFragment : Fragment(), MyItemRecyclerViewAdapter.OnItemClickListener {
 
     private var columnCount = 1
-    private var dualPane: Boolean = false
+    private var dualPane: Boolean = true
     private var curCheckPosition = 0
 
     private fun showDetails(index: Int) {
@@ -58,7 +58,9 @@ class ItemFragment : Fragment(), MyItemRecyclerViewAdapter.OnItemClickListener {
                 activity?.let { setClass(it, DetailActivity::class.java) }
                 putExtra(DetailActivity.INDEX, index)
             }
-            startActivity(intent)
+            startActivity(intent);
+            activity?.overridePendingTransition(R.anim.translate_left_side, R.anim.exit_left_side);
+
         }
     }
 
@@ -85,7 +87,7 @@ class ItemFragment : Fragment(), MyItemRecyclerViewAdapter.OnItemClickListener {
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
         val detailsFrame: View? = activity?.findViewById(R.id.details)
-        dualPane = detailsFrame?.visibility == View.VISIBLE
+        dualPane =  detailsFrame?.visibility == View.VISIBLE
 
         curCheckPosition = savedInstanceState?.getInt("curChoice", 0) ?: 0
 
