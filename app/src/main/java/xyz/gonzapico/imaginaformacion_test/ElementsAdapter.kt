@@ -46,6 +46,8 @@ class ElementsAdapter(
         // Obtenemos el elemento de UI y reemplzamos el
         // contenido de la vista con esos valores
         viewHolder.bind(items[position])
+
+
     }
 
     // Tamaño de la lista de elementos (invocado por el LayoutManager)
