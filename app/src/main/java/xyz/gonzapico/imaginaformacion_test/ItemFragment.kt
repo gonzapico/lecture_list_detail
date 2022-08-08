@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,13 +40,31 @@ class ItemFragment : Fragment(), MyItemRecyclerViewAdapter.OnItemClickListener {
 
                 // Execute a transaction, replacing any existing fragment
                 // with this one inside the frame.
+
                 parentFragmentManager.beginTransaction().apply {
+                    setCustomAnimations(R.anim.enter_right_to_left,
+                        R.anim.exit_right_to_left,
+                        R.anim.exit_left_to_right,
+                        R.anim.exit_left_to_right)
+
                     if (index == 0) {
                         replace(R.id.details, details)
                     }
-                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    //setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     commit()
                 }
+                /*
+                parentFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.enter_right_to_left,
+                                         R.anim.exit_right_to_left,
+                                         R.anim.exit_left_to_right,
+                                         R.anim.exit_left_to_right)
+                    .replace(R.id.details, details)
+                    .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
+                 */
             }
 
         } else {
@@ -102,4 +118,5 @@ class ItemFragment : Fragment(), MyItemRecyclerViewAdapter.OnItemClickListener {
     override fun onClickElement(item: PlaceholderContent.PlaceholderItem) {
         showDetails(item.id.toInt())
     }
+
 }
