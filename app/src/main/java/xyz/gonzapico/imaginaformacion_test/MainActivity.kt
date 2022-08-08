@@ -3,11 +3,9 @@ package xyz.gonzapico.imaginaformacion_test
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import xyz.gonzapico.imaginaformacion_test.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -34,13 +32,13 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.fab.setOnClickListener {
-            showDatePickerDialog()
+            showTimePickerDialog()
         }
     }
 
-    private fun showDatePickerDialog() {
-        val datePicker = DatePickerFragment()
-        datePicker.show(supportFragmentManager, "datePicker")
+    private fun showTimePickerDialog() {
+        val datePicker = TimePickerFragment()
+        datePicker.show(supportFragmentManager, "timePicker")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
