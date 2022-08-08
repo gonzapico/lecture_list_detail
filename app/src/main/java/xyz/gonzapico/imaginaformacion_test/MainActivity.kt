@@ -1,5 +1,6 @@
 package xyz.gonzapico.imaginaformacion_test
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -20,9 +21,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        val p1=Persona("Ana","Ramos",'H',30)
+        val p2=Persona("Manuel","Gonzalez",'M',42)
+        val p3=Persona("Tomasa","Brosa",'H',22)
+        val lisper = arrayOf<Persona>(p1,p2,p3)
 
         // Contenido
-        val listOfPeople = ElementsAdapter(arrayOf("Ana", "Paco", "Luis"))
+        val listOfPeople = ElementsAdapter(lisper) {iradetalle(it)}
         // RecyclerView
         val rvListOfElements = binding.rvListOfElements
         // Adapter
@@ -43,7 +48,12 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
+private fun iradetalle (p : Persona)
+{
+    val intent = Intent (this,Detalleactivity::class.java)
+    intent.putExtra(Detalleactivity.PNOMBRE,p.nombre)
+    startActivity(intent)
+}
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
